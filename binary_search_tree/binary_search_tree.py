@@ -31,7 +31,7 @@ class BSTNode:
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        if self.value == target.value:
+        if self.value == target:
             return True
 
         if target < self.value:
@@ -66,17 +66,51 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
-        pass
+        if self == None:
+            return
+
+        if self.left is not None:
+            self.left.in_order_print()
+        
+        print(self.value)
+
+        if self.right is not None:
+            self.right.in_order_print()
+        
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
+
+    
     def bft_print(self):
-        pass
+        current = self
+        queue = [current]  
+
+        while queue:
+            current = queue.pop(0)
+            print(current.value)
+
+        if current.left:
+            queue.append(current.left)
+        if current.right:
+            queue.append(current.right)
+        
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+
     def dft_print(self):
-        pass
+        current = self
+        stack = [current]  
+
+        while stack:
+            current = stack.pop()
+            print(current.value)
+
+        if current.left:
+            stack.append(current.left)
+        if current.right:
+            stack.append(current.right)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
@@ -92,23 +126,23 @@ class BSTNode:
 """
 This code is necessary for testing the `print` methods
 """
-# bst = BSTNode(1)
+bst = BSTNode(1)
 
-# bst.insert(8)
-# bst.insert(5)
-# bst.insert(7)
-# bst.insert(6)
-# bst.insert(3)
-# bst.insert(4)
-# bst.insert(2)
+bst.insert(8)
+bst.insert(5)
+bst.insert(7)
+bst.insert(6)
+bst.insert(3)
+bst.insert(4)
+bst.insert(2)
 
-# bst.bft_print()
-# bst.dft_print()
+bst.bft_print()
+bst.dft_print()
 
-# print("elegant methods")
-# print("pre order")
-# bst.pre_order_dft()
-# print("in order")
-# bst.in_order_dft()
-# print("post order")
-# bst.post_order_dft()  
+print("elegant methods")
+print("pre order")
+bst.pre_order_dft()
+print("in order")
+bst.in_order_print()
+print("post order")
+bst.post_order_dft()  
